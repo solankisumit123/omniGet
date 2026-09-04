@@ -117,7 +117,7 @@ jobs:
 
             Then open it normally. If it still refuses, allow it under
             **System Settings → Privacy & Security**.
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           includeUpdaterJson: false
           args: ${{ matrix.args }}
@@ -129,6 +129,7 @@ jobs:
         run: |
           sudo apt-get install -y zsync
           TAG="${GITHUB_REF#refs/tags/}"
+          [ "$TAG" = "main" ] && TAG="v0.9.0"
           for appimage in src-tauri/target/release/bundle/appimage/*.AppImage; do
             if [ -f "$appimage" ]; then
               zsyncmake "$appimage" -o "${appimage}.zsync" -u "$(basename "$appimage")"
@@ -141,7 +142,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $TAG = "${{ github.ref_name }}"
+          $TAG = if ("${{ github.ref_type }}" -eq "tag") { "${{ github.ref_name }}" } else { "v0.9.0" }
           $VERSION = $TAG -replace '^v', ''
           $EXE = "src-tauri/target/release/omniget.exe"
           $DEST = "omniget_${VERSION}_x64-portable.exe"
