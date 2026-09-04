@@ -1581,6 +1581,7 @@
       <h3>Nova pasta Drive</h3>
       <p class="dialog-hint">Cria um canal Telegram com sufixo <code>[og]</code> para você usar como pasta privada de mídias.</p>
       <form onsubmit={(e) => { e.preventDefault(); commitCreateFolder(); }}>
+        <!-- svelte-ignore a11y_autofocus -->
         <input
           type="text"
           class="input"
