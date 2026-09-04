@@ -1,9 +1,10 @@
+import type { LayoutLoad } from "./$types";
 import { loadTranslations, defaultLocale } from "$lib/i18n";
 import { loadSettings } from "$lib/stores/settings-store.svelte";
 
 export const ssr = false;
 
-export const load = async ({ url }) => {
+export const load: LayoutLoad = async ({ url }) => {
   let lang = defaultLocale;
   try {
     const settings = await loadSettings();

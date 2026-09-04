@@ -2,6 +2,7 @@
   "generated_on": "linux",
   "total": 92,
   "counts": {
+    "omnidisc_media|clippy::chunks_exact_to_as_chunks": 1,
     "omniget_core|clippy::assertions_on_constants": 1,
     "omniget_core|clippy::bind_instead_of_map": 1,
     "omniget_core|clippy::collapsible_if": 2,

@@ -1308,7 +1308,10 @@ async fn spawn_download_inner(
         user_agent,
         cancel_token: cancel_token.clone(),
         concurrent_fragments: if settings.advanced.turbo_mode {
-            settings.advanced.turbo_concurrency.max(settings.advanced.concurrent_fragments)
+            settings
+                .advanced
+                .turbo_concurrency
+                .max(settings.advanced.concurrent_fragments)
         } else {
             settings.advanced.concurrent_fragments
         },
